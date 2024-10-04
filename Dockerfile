@@ -17,6 +17,9 @@ COPY . /app/
 # run django collectstatic
 RUN python manage.py collectstatic --noinput
 
+# run to migrate
+RUN python manage.py migrate --noinput
+
 EXPOSE 8000
 
 # set the default command to run django's development server
