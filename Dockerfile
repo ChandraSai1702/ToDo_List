@@ -17,8 +17,11 @@ COPY . /app/
 # run django collectstatic
 RUN python manage.py collectstatic --noinput
 
-# run to migrate
-RUN python manage.py migrate --noinput
+# Ensure the migration runs when the container starts
+RUN chmod +x /app/entrypoint.sh
+
+# Set the default entrypoint to automatically run migrations and start the server
+ENTRYPOINT ["/app/entrypoint.sh"]
 
 EXPOSE 8000
 
