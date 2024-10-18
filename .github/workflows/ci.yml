@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main 
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -32,3 +33,12 @@ jobs:
 
       - name: Push to Docker Hub
         run: docker push chandrasaid/todo-app:latest
+
+      - name: Deploy to EC2
+        run: |
+          ssh -o StrictHostKeyChecking=no -i "${{ secrets.EC2_SSH_KEY }}" ec2-user@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
+            docker pull chandrasaid/todo-app:latest
+            docker stop todo-app || true
+            docker rm todo-app || true
+            docker run -d --name todo-app -p 80:8000 chandrasaid/todo-app:latest
+          EOF
