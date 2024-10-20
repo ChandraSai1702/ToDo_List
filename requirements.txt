@@ -15,3 +15,5 @@ jupyterlab-pygments==0.3.0
 jupyterlab-server==2.27.3
 jupyterlab-widgets==3.0.13
 django-prometheus
+django-storages
+boto3
