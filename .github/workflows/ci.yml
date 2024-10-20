@@ -39,11 +39,29 @@ jobs:
           echo "${{ secrets.EC2_SSH_KEY }}" > /tmp/ssh_key.pem
           chmod 600 /tmp/ssh_key.pem
 
-      - name: Deploy to EC2
+      # - name: Deploy to EC2
+      - name: Deploy to Minikube on EC2
         run: |
           ssh -o StrictHostKeyChecking=no -i /tmp/ssh_key.pem ec2-user@${{ secrets.EC2_PUBLIC_IP }} << 'EOF'
-            docker pull chandrasaid/todo-app:latest
-            docker stop todo-app || true
-            docker rm todo-app || true
-            docker run -d --name todo-app -p 80:8000 chandrasaid/todo-app:latest
+          #   docker pull chandrasaid/todo-app:latest
+          #   docker stop todo-app || true
+          #   docker rm todo-app || true
+          #   docker run -d --name todo-app -p 80:8000 chandrasaid/todo-app:latest
+          # EOF
+
+            # Load the environment for Minikube
+            export MINIKUBE_HOME=$HOME
+            export KUBECONFIG=$HOME/.kube/config
+
+            # Pull the latest Docker image from Docker Hub
+            docker pull chandrasaid/todo-monitoring:latest
+
+            # Update the Kubernetes deployment with the new image
+            kubectl set image deployment/todo-app-deployment todo-app=chandrasaid/todo-monitoring:latest --record
+
+            # Apply any updated configuration (optional)
+            kubectl apply -f k8s/deployment.yaml
+
+            # Wait for the deployment to complete
+            kubectl rollout status deployment/todo-app-deployment
           EOF

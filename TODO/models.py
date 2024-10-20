@@ -6,6 +6,7 @@ class Task(models.Model):
     completed = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-
+    file = models.FileField(upload_to='task_files/', null=True, blank=True)  # This will be uploaded to S3
+    
     def __str__(self):
         return self.title
