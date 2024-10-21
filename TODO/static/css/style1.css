@@ -1,0 +1,141 @@
+/* style1.css */
+
+.todo-container {
+    width: 450px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.todo-search {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px; /* Adds space between elements */
+}
+
+.input-container {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.completed-container {
+    width: 70%;
+    display: flex;
+    align-items: center;
+    gap: 1px; /* Space between the checkbox and the label */
+    margin-bottom: 20px;
+    
+}
+
+.checkbox-small {
+    transform: scale(0.1); /* Scale down the checkbox size */
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+}
+
+.todo-search form button,
+.cancel-button {
+    width: 48%; /* Adjusts button width to fit side by side */
+    height: 50px;
+    background-color: #a459f4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    text-align: center;
+}
+
+.cancel-button {
+    background-color: #f44336;
+}
+
+
+
+/* style1.css */
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: sans-serif;
+}
+
+body {
+    background-color: #ee5555;
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.todo-container {
+    width: 450px;
+    height: auto;
+    padding: 0 20px;
+}
+
+.todo-search {
+    width: 100%;
+    height: auto;
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column; /* Allow vertical stacking */
+    align-items: center;
+}
+
+.input-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Stack input fields vertically */
+    margin-bottom: 20px; /* Space between input and button */
+}
+
+.todo-search form {
+    width: 100%;
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+}
+
+.todo-search form input,
+.todo-search form select {
+    border: 1px solid silver;
+    height: 50px;
+    padding: 10px;
+    width: 100%; /* Full width */
+    border-radius: 10px;
+    margin-bottom: 10px; /* Space between inputs */
+}
+
+.todo-search form button {
+    height: 50px;
+    width: 100%; /* Full width */
+    background-color: #a459f4;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 10px; /* Space below button */
+}
+
+.cancel-button {
+    display: inline-block;
+    text-align: center;
+    background-color: #f44336; /* Optional style for the cancel button */
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none; /* Remove underline */
+}
+

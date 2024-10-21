@@ -2,20 +2,19 @@
 
 {% block content %}
 
-<div class = "todo-container">
+<div class="todo-container">
     <div class="todo-search">
-        <form action="" method="post">
-            {% comment %} <input type="text" placeholder="enter todo" /> {% endcomment %}
+        <form action="" method="POST">
             {% csrf_token %}
-            {{ form.title }}
-            <button>Add</button>
+            <input type="text" name="title" placeholder="Enter your todo" required>
+            <button type="submit">Add</button>
         </form>
     </div>
     <div class="todo-list">
         {% for task in tasks %}
         <div class="todo-list-item">
             <div class="task">
-                <input type="checkbox">
+                <input type="checkbox" {% if task.completed %}checked{% endif %}>
                 <p>{{ task.title }}</p>
             </div>
 
@@ -35,5 +34,5 @@
         {% endfor %}
     </div>
 </div>
-{% endblock content %}
 
+{% endblock content %}
